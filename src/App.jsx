@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 
-const FILTERS = ['すべて', '未完了', '完了']
+const FILTERS = ['ALL', 'ACTIVE', 'DONE']
 
 export default function App() {
   const [tasks, setTasks] = useState([])
   const [input, setInput] = useState('')
-  const [filter, setFilter] = useState('すべて')
+  const [filter, setFilter] = useState('ALL')
 
   const addTask = () => {
     const text = input.trim()
@@ -24,14 +24,14 @@ export default function App() {
   }
 
   const filteredTasks = tasks.filter(t => {
-    if (filter === '未完了') return !t.done
-    if (filter === '完了') return t.done
+    if (filter === 'ACTIVE') return !t.done
+    if (filter === 'DONE') return t.done
     return true
   })
 
   return (
     <div className="container">
-      <h1>タスク管理</h1>
+      <h1>QUEST LOG</h1>
 
       <div className="input-row">
         <input
@@ -39,9 +39,9 @@ export default function App() {
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && addTask()}
-          placeholder="新しいタスクを入力..."
+          placeholder="新しいクエストを入力..."
         />
-        <button onClick={addTask}>追加</button>
+        <button onClick={addTask}>ADD</button>
       </div>
 
       <div className="filters">
@@ -58,7 +58,7 @@ export default function App() {
 
       <ul className="task-list">
         {filteredTasks.length === 0 && (
-          <li className="empty">タスクがありません</li>
+          <li className="empty">-- NO QUESTS ACTIVE --</li>
         )}
         {filteredTasks.map(task => (
           <li key={task.id} className={task.done ? 'done' : ''}>
@@ -68,14 +68,23 @@ export default function App() {
               onChange={() => toggleTask(task.id)}
             />
             <span>{task.text}</span>
-            <button className="delete" onClick={() => deleteTask(task.id)}>削除</button>
+            <button className="delete" onClick={() => deleteTask(task.id)}>DEL</button>
           </li>
         ))}
       </ul>
 
-      <p className="summary">
-        {tasks.filter(t => !t.done).length} / {tasks.length} 件未完了
-      </p>
+      <div className="summary">
+        <div className="xp-label">
+          <span>QUEST PROGRESS</span>
+          <span>{tasks.filter(t => t.done).length} / {tasks.length} CLEARED</span>
+        </div>
+        <div className="xp-bar-bg">
+          <div
+            className="xp-bar-fill"
+            style={{ width: tasks.length === 0 ? '0%' : `${(tasks.filter(t => t.done).length / tasks.length) * 100}%` }}
+          />
+        </div>
+      </div>
     </div>
   )
 }
