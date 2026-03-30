@@ -91,7 +91,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: 13px;
   color: var(--cyan);
   box-shadow: var(--cyan-glow);
   line-height: 1;
@@ -99,7 +99,7 @@ body {
 
 .app-logo-text {
   font-family: var(--font-pixel);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--cyan);
   text-shadow: var(--cyan-glow);
   letter-spacing: 2px;
@@ -112,7 +112,7 @@ body {
 }
 
 .user-email {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-dim);
   max-width: 160px;
   overflow: hidden;
@@ -127,7 +127,7 @@ body {
   background: transparent;
   border: 1px solid rgba(255, 51, 102, 0.3);
   border-radius: 3px;
-  font-size: 9px;
+  font-size: 15px;
   font-family: var(--font-pixel);
   color: rgba(255, 51, 102, 0.7);
   cursor: pointer;
@@ -181,7 +181,7 @@ body {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   font-family: var(--font-ui);
   color: var(--cyan);
   outline: none;
@@ -189,7 +189,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-.add-input::placeholder { color: var(--text-dim); font-size: 11px; }
+.add-input::placeholder { color: var(--text-dim); font-size: 14px; }
 .add-input:hover { border-color: rgba(0, 245, 255, 0.35); }
 .add-input:focus {
   border-color: var(--cyan);
@@ -203,7 +203,7 @@ body {
   color: var(--cyan);
   border: 1px solid var(--cyan);
   border-radius: 3px;
-  font-size: 9px;
+  font-size: 15px;
   font-family: var(--font-pixel);
   cursor: pointer;
   white-space: nowrap;
@@ -240,7 +240,7 @@ body {
 
 .add-meta-group label {
   font-family: var(--font-pixel);
-  font-size: 8px;
+  font-size: 14px;
   letter-spacing: 1px;
   color: var(--text-dim);
 }
@@ -256,7 +256,7 @@ body {
   height: 26px;
   padding: 0 12px;
   border-radius: 2px;
-  font-size: 10px;
+  font-size: 13px;
   font-family: var(--font-ui);
   font-weight: 600;
   cursor: pointer;
@@ -287,7 +287,7 @@ body {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 3px;
-  font-size: 11px;
+  font-size: 14px;
   font-family: var(--font-ui);
   color: var(--text);
   outline: none;
@@ -319,7 +319,7 @@ body {
   height: 28px;
   padding: 0 14px;
   border-radius: 2px;
-  font-size: 9px;
+  font-size: 15px;
   font-family: var(--font-pixel);
   cursor: pointer;
   border: 1px solid rgba(255,255,255,0.07);
@@ -435,7 +435,7 @@ body {
 }
 
 .task-text {
-  font-size: 12px;
+  font-size: 15px;
   color: var(--text);
   line-height: 1.5;
   word-break: break-word;
@@ -455,7 +455,7 @@ body {
 
 .task-cat-chip {
   font-family: var(--font-ui);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 2px;
@@ -468,7 +468,7 @@ body {
 
 .task-date-chip {
   font-family: var(--font-ui);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
   padding: 2px 8px;
   border-radius: 2px;
@@ -495,7 +495,7 @@ body {
   border: 1px solid transparent;
   border-radius: 3px;
   color: var(--text-dim);
-  font-size: 11px;
+  font-size: 14px;
   cursor: pointer;
   flex-shrink: 0;
   opacity: 0;
@@ -515,7 +515,7 @@ body {
   text-align: center;
   color: var(--text-dim);
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 15px;
   padding: 48px 0;
   letter-spacing: 1px;
   animation: pulse 2.5s ease-in-out infinite;
@@ -535,7 +535,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-pixel);
-  font-size: 8px;
+  font-size: 14px;
   color: var(--text-dim);
   letter-spacing: 1px;
   margin-bottom: 8px;
