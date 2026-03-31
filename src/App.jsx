@@ -41,6 +41,13 @@ export default function App() {
   const [taskError, setTaskError] = useState('')
 
   useEffect(() => {
+    // URLハッシュからrecoveryタイプを即時検出
+    const hash = window.location.hash
+    const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : '')
+    if (hashParams.get('type') === 'recovery') {
+      setIsRecovery(true)
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
       setLoading(false)
