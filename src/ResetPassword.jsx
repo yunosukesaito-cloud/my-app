@@ -24,7 +24,10 @@ export default function ResetPassword() {
     if (error) {
       setError(error.message)
     } else {
-      setMessage('パスワードを変更しました！')
+      setMessage('パスワードを変更しました！3秒後にログイン画面へ移動します...')
+      setTimeout(async () => {
+        await supabase.auth.signOut()
+      }, 3000)
     }
     setLoading(false)
   }
