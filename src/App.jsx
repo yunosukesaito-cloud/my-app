@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from './supabase'
 import Auth from './Auth'
+import ResetPassword from './ResetPassword'
 import './App.css'
 
 const STATUS_FILTERS = ['すべて', '未完了', '完了']
@@ -28,6 +29,7 @@ function isOverdue(dateStr) {
 
 export default function App() {
   const [session, setSession] = useState(null)
+  const [isRecovery, setIsRecovery] = useState(false)
   const [tasks, setTasks] = useState([])
   const [input, setInput] = useState('')
   const [dueDate, setDueDate] = useState('')
@@ -41,7 +43,12 @@ export default function App() {
       setSession(session)
       setLoading(false)
     })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        setIsRecovery(true)
+      } else {
+        setIsRecovery(false)
+      }
       setSession(session)
     })
     return () => subscription.unsubscribe()
@@ -108,6 +115,7 @@ export default function App() {
 
   if (loading) return null
   if (!session) return <Auth />
+  if (isRecovery) return <ResetPassword />
 
   return (
     <div className="app">
