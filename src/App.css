@@ -112,7 +112,7 @@ body {
 }
 
 .user-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
   max-width: 160px;
   overflow: hidden;
@@ -222,9 +222,22 @@ body {
   transition: opacity 0.15s;
 }
 
-.add-button:hover { box-shadow: var(--cyan-glow); text-shadow: var(--cyan-glow); }
-.add-button:hover::before { opacity: 1; }
-.add-button:active { transform: scale(0.97); }
+.add-button:hover:not(:disabled) { box-shadow: var(--cyan-glow); text-shadow: var(--cyan-glow); }
+.add-button:hover:not(:disabled)::before { opacity: 1; }
+.add-button:active:not(:disabled) { transform: scale(0.97); }
+.add-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.add-input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.task-error {
+  font-size: 13px;
+  color: var(--red);
+  background: var(--red-dim);
+  border: 1px solid rgba(255, 51, 102, 0.3);
+  padding: 10px 14px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px rgba(255, 51, 102, 0.5);
+}
 
 .add-meta {
   display: flex;
@@ -240,7 +253,7 @@ body {
 
 .add-meta-group label {
   font-family: var(--font-pixel);
-  font-size: 14px;
+  font-size: 10px;
   letter-spacing: 1px;
   color: var(--text-dim);
 }
@@ -435,7 +448,7 @@ body {
 }
 
 .task-text {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text);
   line-height: 1.5;
   word-break: break-word;
@@ -455,7 +468,7 @@ body {
 
 .task-cat-chip {
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 2px;
@@ -468,7 +481,7 @@ body {
 
 .task-date-chip {
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   padding: 2px 8px;
   border-radius: 2px;
@@ -535,7 +548,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-pixel);
-  font-size: 14px;
+  font-size: 10px;
   color: var(--text-dim);
   letter-spacing: 1px;
   margin-bottom: 8px;

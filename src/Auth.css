@@ -95,7 +95,7 @@
 
 .auth-field label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 14px;
+  font-size: 10px;
   letter-spacing: 1px;
   color: #4a5a6a;
 }
@@ -106,7 +106,7 @@
   background: #141428;
   border: 1px solid rgba(0, 245, 255, 0.15);
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: 'Orbitron', monospace;
   color: #00f5ff;
   outline: none;
@@ -129,7 +129,7 @@
 }
 
 .auth-error {
-  font-size: 13px;
+  font-size: 14px;
   color: #ff3366;
   background: rgba(255, 51, 102, 0.1);
   border: 1px solid rgba(255, 51, 102, 0.3);
@@ -140,7 +140,7 @@
 }
 
 .auth-message {
-  font-size: 13px;
+  font-size: 14px;
   color: #39ff14;
   background: rgba(57, 255, 20, 0.08);
   border: 1px solid rgba(57, 255, 20, 0.3);
@@ -185,7 +185,7 @@
 
 .auth-switch {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 14px;
   color: #4a5a6a;
   text-align: center;
   letter-spacing: 0.5px;
@@ -195,7 +195,7 @@
   background: none;
   border: none;
   color: #b44fff;
-  font-size: 13px;
+  font-size: 11px;
   font-family: 'Press Start 2P', monospace;
   cursor: pointer;
   padding: 0 4px;

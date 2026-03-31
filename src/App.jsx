@@ -37,6 +37,8 @@ export default function App() {
   const [statusFilter, setStatusFilter] = useState('すべて')
   const [categoryFilter, setCategoryFilter] = useState('すべて')
   const [loading, setLoading] = useState(true)
+  const [adding, setAdding] = useState(false)
+  const [taskError, setTaskError] = useState('')
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -64,13 +66,19 @@ export default function App() {
       .from('tasks')
       .select('*')
       .order('created_at', { ascending: true })
-    if (!error) setTasks(data)
+    if (error) {
+      setTaskError('タスクの読み込みに失敗しました: ' + error.message)
+    } else {
+      setTasks(data)
+    }
   }
 
   const addTask = async () => {
     const text = input.trim()
-    if (!text) return
-    const { data, error } = await supabase
+    if (!text || adding) return
+    setAdding(true)
+    setTaskError('')
+    const { error } = await supabase
       .from('tasks')
       .insert({
         text,
@@ -79,23 +87,34 @@ export default function App() {
         due_date: dueDate || null,
         category,
       })
-      .select()
-      .single()
-    if (!error) {
-      setTasks([...tasks, data])
+    if (error) {
+      setTaskError('タスクの追加に失敗しました: ' + error.message)
+    } else {
       setInput('')
       setDueDate('')
+      await fetchTasks()
     }
+    setAdding(false)
   }
 
   const toggleTask = async (id, done) => {
+    setTaskError('')
     const { error } = await supabase.from('tasks').update({ done: !done }).eq('id', id)
-    if (!error) setTasks(tasks.map(t => t.id === id ? { ...t, done: !done } : t))
+    if (error) {
+      setTaskError('更新に失敗しました: ' + error.message)
+    } else {
+      setTasks(tasks.map(t => t.id === id ? { ...t, done: !done } : t))
+    }
   }
 
   const deleteTask = async (id) => {
+    setTaskError('')
     const { error } = await supabase.from('tasks').delete().eq('id', id)
-    if (!error) setTasks(tasks.filter(t => t.id !== id))
+    if (error) {
+      setTaskError('削除に失敗しました: ' + error.message)
+    } else {
+      setTasks(tasks.filter(t => t.id !== id))
+    }
   }
 
   const handleSignOut = async () => {
@@ -141,12 +160,16 @@ export default function App() {
               className="add-input"
               type="text"
               value={input}
-              onChange={e => setInput(e.target.value)}
+              onChange={e => { setInput(e.target.value); setTaskError('') }}
               onKeyDown={e => e.key === 'Enter' && addTask()}
               placeholder="新しいタスクを入力..."
+              disabled={adding}
             />
-            <button className="add-button" onClick={addTask}>追加</button>
+            <button className="add-button" onClick={addTask} disabled={adding}>
+              {adding ? '追加中...' : '追加'}
+            </button>
           </div>
+          {taskError && <p className="task-error">{taskError}</p>}
           <div className="add-meta">
             <div className="add-meta-group">
               <label>カテゴリ</label>
