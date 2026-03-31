@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { supabase } from './supabase'
+import { supabase, isRecoveryFlow } from './supabase'
 import Auth from './Auth'
 import ResetPassword from './ResetPassword'
 import './App.css'
@@ -29,7 +29,7 @@ function isOverdue(dateStr) {
 
 export default function App() {
   const [session, setSession] = useState(null)
-  const [isRecovery, setIsRecovery] = useState(false)
+  const [isRecovery, setIsRecovery] = useState(isRecoveryFlow)
   const [tasks, setTasks] = useState([])
   const [input, setInput] = useState('')
   const [dueDate, setDueDate] = useState('')
@@ -41,13 +41,6 @@ export default function App() {
   const [taskError, setTaskError] = useState('')
 
   useEffect(() => {
-    // URLハッシュからrecoveryタイプを即時検出
-    const hash = window.location.hash
-    const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : '')
-    if (hashParams.get('type') === 'recovery') {
-      setIsRecovery(true)
-    }
-
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
       setLoading(false)
