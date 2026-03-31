@@ -30,7 +30,7 @@ export default function Auth() {
       }
     } else if (mode === 'reset') {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://my-app-six-delta.vercel.app/',
+        redirectTo: window.location.origin + '?mode=reset',
       })
       if (error) {
         setError(error.message)

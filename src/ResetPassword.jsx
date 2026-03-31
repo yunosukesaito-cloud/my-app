@@ -27,6 +27,8 @@ export default function ResetPassword() {
       setMessage('パスワードを変更しました！3秒後にログイン画面へ移動します...')
       setTimeout(async () => {
         await supabase.auth.signOut()
+        // URLパラメータをクリア
+        window.history.replaceState({}, '', window.location.pathname)
       }, 3000)
     }
     setLoading(false)
